@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniApp前端功能演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f8f8;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            color: #666;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .feature-list li:before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+        
+        .tech-stack {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tech-stack h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .platforms {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .platforms h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .platform-item {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .platform-item:hover {
+            border-color: #667eea;
+        }
+        
+        .platform-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .platform-name {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .api-info {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .api-info h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .api-endpoint {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 40px;
+        }
+        
+        .demo-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .demo-link:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 UniApp订单管理系统</h1>
+            <p>完整的前端实现 - 支持多平台部署</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">驾驶仓</div>
+                <ul class="feature-list">
+                    <li>实时数据统计</li>
+                    <li>今日/本月概况</li>
+                    <li>客户商品统计</li>
+                    <li>可视化图表</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <div class="feature-title">订单管理</div>
+                <ul class="feature-list">
+                    <li>订单列表查看</li>
+                    <li>搜索和筛选</li>
+                    <li>新增/编辑订单</li>
+                    <li>支付状态管理</li>
+                    <li>客户地址建议</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🛍️</div>
+                <div class="feature-title">商品管理</div>
+                <ul class="feature-list">
+                    <li>商品网格展示</li>
+                    <li>图片上传支持</li>
+                    <li>分类管理</li>
+                    <li>自定义属性</li>
+                    <li>上架状态控制</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <div class="feature-title">客户管理</div>
+                <ul class="feature-list">
+                    <li>客户信息管理</li>
+                    <li>多地址支持</li>
+                    <li>搜索功能</li>
+                    <li>头像显示</li>
+                    <li>详情弹窗</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <div class="feature-title">日历视图</div>
+                <ul class="feature-list">
+                    <li>月/周/年视图</li>
+                    <li>农历显示</li>
+                    <li>节假日标记</li>
+                    <li>订单统计</li>
+                    <li>日期详情</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tech-stack">
+            <h2>🛠️ 技术栈</h2>
+            <div class="tech-tags">
+                <span class="tech-tag">UniApp</span>
+                <span class="tech-tag">Vue.js</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">RESTful API</span>
+                <span class="tech-tag">响应式设计</span>
+            </div>
+        </div>
+        
+        <div class="platforms">
+            <h2>📱 支持平台</h2>
+            <div class="platform-grid">
+                <div class="platform-item">
+                    <div class="platform-icon">🌐</div>
+                    <div class="platform-name">H5网页</div>
+                </div>
+                <div class="platform-item">
+                    <div class="platform-icon">💬</div>
+                    <div class="platform-name">微信小程序</div>
+                </div>
+                <div class="platform-item">
+                    <div class="platform-icon">💰</div>
+                    <div class="platform-name">支付宝小程序</div>
+                </div>
+                <div class="platform-item">
+                    <div class="platform-icon">📱</div>
+                    <div class="platform-name">Android App</div>
+                </div>
+                <div class="platform-item">
+                    <div class="platform-icon">🍎</div>
+                    <div class="platform-name">iOS App</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="api-info">
+            <h2>🔗 API集成</h2>
+            <p>前端已完整集成后端API接口：</p>
+            
+            <div class="api-endpoint">
+                GET /api/dashboard <span class="status-badge">已集成</span><br>
+                <small>获取驾驶仓统计数据</small>
+            </div>
+            
+            <div class="api-endpoint">
+                GET/POST/PUT/DELETE /api/products <span class="status-badge">已集成</span><br>
+                <small>商品管理相关接口</small>
+            </div>
+            
+            <div class="api-endpoint">
+                GET/POST/PUT/DELETE /api/customers <span class="status-badge">已集成</span><br>
+                <small>客户管理相关接口</small>
+            </div>
+            
+            <div class="api-endpoint">
+                GET/POST/PUT/DELETE /api/orders <span class="status-badge">已集成</span><br>
+                <small>订单管理相关接口</small>
+            </div>
+            
+            <div class="api-endpoint">
+                GET /api/orders/calendar <span class="status-badge">已集成</span><br>
+                <small>日历数据接口（含农历）</small>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="http://localhost:12000" class="demo-link" target="_blank">🚀 后端API服务</a>
+            <a href="http://localhost:8080/test.html" class="demo-link" target="_blank">🧪 API测试界面</a>
+        </div>
+        
+        <div class="footer">
+            <p>📁 项目结构：/workspace/uniapp-order/frontend/</p>
+            <p>🔧 开发工具：HBuilderX 或 CLI</p>
+            <p>📖 详细文档：frontend/README.md</p>
+        </div>
+    </div>
+</body>
+</html>

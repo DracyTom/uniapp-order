@@ -13,15 +13,33 @@
 			}
 		},
 		{
+			"path": "pages/orders/order-form",
+			"style": {
+				"navigationBarTitleText": "订单表单"
+			}
+		},
+		{
 			"path": "pages/products/products",
 			"style": {
 				"navigationBarTitleText": "商品管理"
 			}
 		},
 		{
+			"path": "pages/products/product-form",
+			"style": {
+				"navigationBarTitleText": "商品表单"
+			}
+		},
+		{
 			"path": "pages/customers/customers",
 			"style": {
 				"navigationBarTitleText": "客户管理"
+			}
+		},
+		{
+			"path": "pages/customers/customer-form",
+			"style": {
+				"navigationBarTitleText": "客户表单"
 			}
 		},
 		{
