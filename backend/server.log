@@ -1,4 +1,4 @@
-2025/05/29 01:43:12 数据库初始化成功
+2025/05/29 02:20:09 数据库初始化成功
 [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 
 [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
@@ -26,40 +26,12 @@
 [GIN-debug] GET    /api/orders/calendar      --> uniapp-order-backend/controllers.(*OrderController).GetCalendarData-fm (4 handlers)
 [GIN-debug] GET    /api/dashboard            --> uniapp-order-backend/controllers.(*DashboardController).GetDashboardData-fm (4 handlers)
 [GIN-debug] GET    /health                   --> uniapp-order-backend/routes.SetupRoutes.func1 (4 handlers)
-2025/05/29 01:43:12 服务器启动在: 0.0.0.0:12000
+2025/05/29 02:20:09 服务器启动在: 0.0.0.0:12001
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
-[GIN-debug] Listening and serving HTTP on 0.0.0.0:12000
-[GIN] 2025/05/29 - 01:43:19 | 404 |        1.15µs |       127.0.0.1 | GET      "/api/health"
-[GIN] 2025/05/29 - 01:43:22 | 200 |       363.6µs |       127.0.0.1 | GET      "/api/products"
-[GIN] 2025/05/29 - 01:43:29 | 200 |    4.350921ms |       127.0.0.1 | POST     "/api/products"
-[GIN] 2025/05/29 - 01:43:34 | 200 |     4.57427ms |       127.0.0.1 | POST     "/api/customers"
-[GIN] 2025/05/29 - 01:43:38 | 200 |      795.08µs |       127.0.0.1 | GET      "/api/dashboard"
-[GIN] 2025/05/29 - 01:44:23 | 204 |       31.58µs |       127.0.0.1 | OPTIONS  "/api/dashboard"
-[GIN] 2025/05/29 - 01:44:23 | 200 |      764.34µs |       127.0.0.1 | GET      "/api/dashboard"
-[GIN] 2025/05/29 - 01:44:47 | 204 |       15.83µs |       127.0.0.1 | OPTIONS  "/api/products"
-[GIN] 2025/05/29 - 01:44:47 | 200 |      373.53µs |       127.0.0.1 | GET      "/api/products"
-[GIN] 2025/05/29 - 01:44:53 | 200 |     4.43371ms |       127.0.0.1 | POST     "/api/products"
-[GIN] 2025/05/29 - 01:45:00 | 204 |        6.94µs |       127.0.0.1 | OPTIONS  "/api/customers"
-[GIN] 2025/05/29 - 01:45:00 | 200 |      387.94µs |       127.0.0.1 | GET      "/api/customers"
-[GIN] 2025/05/29 - 01:45:06 | 200 |    4.715731ms |       127.0.0.1 | POST     "/api/customers"
-[GIN] 2025/05/29 - 01:45:21 | 200 |      331.26µs |       127.0.0.1 | GET      "/api/customers"
-[GIN] 2025/05/29 - 01:45:21 | 200 |      227.19µs |       127.0.0.1 | GET      "/api/products"
-[GIN] 2025/05/29 - 01:45:21 | 204 |        3.55µs |       127.0.0.1 | OPTIONS  "/api/orders"
-[GIN] 2025/05/29 - 01:45:21 | 200 |    4.445689ms |       127.0.0.1 | POST     "/api/orders"
-[GIN] 2025/05/29 - 01:45:45 | 204 |        7.35µs |       127.0.0.1 | OPTIONS  "/api/orders/calendar?year=2025&month=5"
-[GIN] 2025/05/29 - 01:45:45 | 200 |      672.22µs |       127.0.0.1 | GET      "/api/orders/calendar?year=2025&month=5"
-[GIN] 2025/05/29 - 01:51:22 | 404 |        3.25µs |       10.1.0.50 | GET      "/"
-[GIN] 2025/05/29 - 01:51:28 | 404 |        4.73µs |       10.1.0.50 | GET      "/"
-[GIN] 2025/05/29 - 01:51:39 | 404 |        3.24µs |       10.1.0.50 | GET      "/"
-[GIN] 2025/05/29 - 01:51:41 | 404 |         3.6µs |       10.1.0.50 | GET      "/"
-[GIN] 2025/05/29 - 01:51:45 | 404 |        3.25µs |       10.1.0.50 | GET      "/"
-[GIN] 2025/05/29 - 01:51:51 | 404 |        8.73µs |       10.1.0.50 | GET      "/"
-[GIN] 2025/05/29 - 01:52:12 | 404 |        4.05µs |       10.1.0.50 | GET      "/"
-[GIN] 2025/05/29 - 01:53:05 | 404 |        3.72µs |      10.1.0.127 | GET      "/"
-[GIN] 2025/05/29 - 01:54:39 | 404 |        3.23µs |      10.1.0.134 | GET      "/"
-[GIN] 2025/05/29 - 01:58:15 | 404 |        4.43µs |      10.1.0.140 | GET      "/"
-[GIN] 2025/05/29 - 01:58:46 | 404 |        4.84µs |      10.1.0.140 | GET      "/"
-[GIN] 2025/05/29 - 02:00:27 | 404 |        3.09µs |      10.1.0.235 | GET      "/"
-[GIN] 2025/05/29 - 02:04:13 | 404 |        3.07µs |       10.1.0.79 | GET      "/"
-[GIN] 2025/05/29 - 02:05:48 | 404 |        2.98µs |       10.1.0.21 | GET      "/"
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:12001
+[GIN] 2025/05/29 - 02:20:13 | 200 |       85.73µs |       127.0.0.1 | GET      "/health"
+[GIN] 2025/05/29 - 02:20:19 | 200 |      531.99µs |       127.0.0.1 | GET      "/api/customers/6"
+[GIN] 2025/05/29 - 02:20:25 | 200 |      367.87µs |       127.0.0.1 | GET      "/api/customers?page=1&limit=10"
+[GIN] 2025/05/29 - 02:20:29 | 200 |    4.025459ms |       127.0.0.1 | POST     "/api/customers/6/addresses"
+[GIN] 2025/05/29 - 02:20:33 | 200 |      143.21µs |       127.0.0.1 | GET      "/api/customers/6/addresses"

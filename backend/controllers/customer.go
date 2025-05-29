@@ -60,9 +60,9 @@ func (cc *CustomerController) GetCustomer(c *gin.Context) {
 
 	// 获取客户地址
 	var addresses []models.CustomerAddress
-	err = models.DB.Where("customer_id = ?", id).Find(&addresses)
+	err = models.DB.Table("customer_address").Where("customer_i_d = ?", id).Find(&addresses)
 	if err != nil {
-		utils.Error(c, 1, "获取客户地址失败")
+		utils.Error(c, 1, "获取客户地址失败: "+err.Error())
 		return
 	}
 
@@ -165,7 +165,7 @@ func (cc *CustomerController) DeleteCustomer(c *gin.Context) {
 	}
 
 	// 删除客户地址
-	_, err = session.Where("customer_id = ?", id).Delete(&models.CustomerAddress{})
+	_, err = session.Table("customer_address").Where("customer_i_d = ?", id).Delete(&models.CustomerAddress{})
 	if err != nil {
 		session.Rollback()
 		utils.Error(c, 1, "删除客户地址失败")
@@ -197,7 +197,7 @@ func (cc *CustomerController) GetCustomerAddresses(c *gin.Context) {
 	}
 
 	var addresses []models.CustomerAddress
-	err = models.DB.Where("customer_id = ?", customerID).Find(&addresses)
+	err = models.DB.Table("customer_address").Where("customer_i_d = ?", customerID).Find(&addresses)
 	if err != nil {
 		utils.Error(c, 1, "获取客户地址失败")
 		return
