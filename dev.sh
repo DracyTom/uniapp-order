@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# 订单管理系统启动脚本
+# 订单管理系统开发模式启动脚本
+# 使用 go run 而不是编译，支持代码修改后自动重启
 
-echo "🚀 启动订单管理系统..."
+echo "🔧 启动开发模式..."
 
 # 检查Go环境
 if ! command -v go &> /dev/null; then
@@ -31,18 +32,9 @@ cd backend
 echo "📦 检查Go依赖..."
 go mod tidy
 
-# 编译后端
-echo "🔨 编译后端程序..."
-go build -o uniapp-order-backend main.go
-
-if [ $? -ne 0 ]; then
-    echo "❌ 后端编译失败"
-    exit 1
-fi
-
-# 启动后端服务
-echo "🌐 启动后端服务 (端口: 12000)..."
-./uniapp-order-backend > server.log 2>&1 &
+# 启动后端服务（开发模式）
+echo "🌐 启动后端服务 (开发模式，端口: 12000)..."
+go run main.go > server.log 2>&1 &
 BACKEND_PID=$!
 
 # 等待后端启动
@@ -92,7 +84,7 @@ else
 fi
 
 echo ""
-echo "🎉 系统启动完成！"
+echo "🎉 开发环境启动完成！"
 echo ""
 echo "📊 访问地址："
 echo "   - 后端API: http://localhost:12000/api/dashboard"
@@ -106,6 +98,11 @@ echo "   - 后端日志: backend/server.log"
 if [ -n "$WEB_PID" ]; then
     echo "   - Web服务日志: web_server.log"
 fi
+echo ""
+echo "🔧 开发模式特性："
+echo "   - 使用 go run 启动，无需手动编译"
+echo "   - 修改代码后需要手动重启服务"
+echo "   - 实时查看日志: tail -f backend/server.log"
 echo ""
 echo "🛑 停止服务："
 echo "   - 后端PID: $BACKEND_PID"
@@ -123,9 +120,11 @@ if [ -n "$WEB_PID" ]; then
     echo $WEB_PID > web.pid
 fi
 
-echo "💡 提示: 使用 ./stop.sh 可以停止所有服务"
+echo "💡 提示:"
+echo "   - 使用 ./stop.sh 停止所有服务"
+echo "   - 使用 ./restart.sh 重启系统"
+echo "   - 使用 Ctrl+C 然后 ./stop.sh 来完全停止"
 echo ""
-echo "🔧 开发提示:"
-echo "   - 后端代码修改后需要重新编译: cd backend && go build -o uniapp-order-backend main.go"
-echo "   - 前端开发请使用 HBuilderX 或 uni-app CLI 工具"
-echo "   - 生产环境建议使用 PostgreSQL 数据库"
+echo "📱 前端开发:"
+echo "   - 使用 HBuilderX 打开 frontend/ 目录"
+echo "   - 或使用 uni-app CLI: npm install -g @vue/cli @dcloudio/uni-cli"

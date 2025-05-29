@@ -124,12 +124,12 @@ func (oc *OrderController) GetOrder(c *gin.Context) {
 // 创建订单
 func (oc *OrderController) CreateOrder(c *gin.Context) {
 	var req struct {
-		Order      models.Order      `json:"order"`
-		OrderItems []models.OrderItem `json:"order_items"`
+		models.Order
+		Items []models.OrderItem `json:"items"`
 	}
 
 	if err := c.ShouldBindJSON(&req); err != nil {
-		utils.Error(c, 1, "参数错误")
+		utils.Error(c, 1, "参数错误: "+err.Error())
 		return
 	}
 
@@ -143,18 +143,18 @@ func (oc *OrderController) CreateOrder(c *gin.Context) {
 
 	// 计算总金额
 	var totalAmount float64
-	for i := range req.OrderItems {
+	for i := range req.Items {
 		// 获取商品当前价格
 		var product models.Product
-		has, err := session.ID(req.OrderItems[i].ProductID).Get(&product)
+		has, err := session.ID(req.Items[i].ProductID).Get(&product)
 		if err != nil || !has {
 			session.Rollback()
 			utils.Error(c, 1, "商品不存在")
 			return
 		}
-		req.OrderItems[i].Price = product.Price
-		req.OrderItems[i].Amount = product.Price * float64(req.OrderItems[i].Quantity)
-		totalAmount += req.OrderItems[i].Amount
+		req.Items[i].Price = product.Price
+		req.Items[i].Amount = product.Price * float64(req.Items[i].Quantity)
+		totalAmount += req.Items[i].Amount
 	}
 	req.Order.TotalAmount = totalAmount
 
@@ -167,10 +167,10 @@ func (oc *OrderController) CreateOrder(c *gin.Context) {
 	}
 
 	// 创建订单商品
-	for i := range req.OrderItems {
-		req.OrderItems[i].OrderID = req.Order.ID
+	for i := range req.Items {
+		req.Items[i].OrderID = req.Order.ID
 	}
-	_, err = session.Insert(&req.OrderItems)
+	_, err = session.Insert(&req.Items)
 	if err != nil {
 		session.Rollback()
 		utils.Error(c, 1, "创建订单商品失败")
@@ -184,7 +184,7 @@ func (oc *OrderController) CreateOrder(c *gin.Context) {
 
 	utils.Success(c, gin.H{
 		"order":       req.Order,
-		"order_items": req.OrderItems,
+		"order_items": req.Items,
 	})
 }
 
@@ -196,16 +196,26 @@ func (oc *OrderController) UpdateOrder(c *gin.Context) {
 		return
 	}
 
-	var order models.Order
-	if err := c.ShouldBindJSON(&order); err != nil {
+	var updateData map[string]interface{}
+	if err := c.ShouldBindJSON(&updateData); err != nil {
 		utils.Error(c, 1, "参数错误")
 		return
 	}
 
-	order.ID = id
-	_, err = models.DB.ID(id).Update(&order)
+	// 添加更新时间
+	updateData["updated_at"] = time.Now()
+
+	_, err = models.DB.Table("order").Where("i_d = ?", id).Update(updateData)
 	if err != nil {
 		utils.Error(c, 1, "更新订单失败")
+		return
+	}
+
+	// 获取更新后的订单
+	var order models.Order
+	has, err := models.DB.ID(id).Get(&order)
+	if err != nil || !has {
+		utils.Error(c, 1, "获取更新后的订单失败")
 		return
 	}
 
@@ -229,7 +239,7 @@ func (oc *OrderController) DeleteOrder(c *gin.Context) {
 	}
 
 	// 删除订单商品
-	_, err = session.Where("order_id = ?", id).Delete(&models.OrderItem{})
+	_, err = session.Where("order_i_d = ?", id).Delete(&models.OrderItem{})
 	if err != nil {
 		session.Rollback()
 		utils.Error(c, 1, "删除订单商品失败")
