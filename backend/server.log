@@ -1,0 +1,51 @@
+2025/05/29 01:43:12 数据库初始化成功
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /api/products             --> uniapp-order-backend/controllers.(*ProductController).GetProducts-fm (4 handlers)
+[GIN-debug] GET    /api/products/:id         --> uniapp-order-backend/controllers.(*ProductController).GetProduct-fm (4 handlers)
+[GIN-debug] POST   /api/products             --> uniapp-order-backend/controllers.(*ProductController).CreateProduct-fm (4 handlers)
+[GIN-debug] PUT    /api/products/:id         --> uniapp-order-backend/controllers.(*ProductController).UpdateProduct-fm (4 handlers)
+[GIN-debug] DELETE /api/products/:id         --> uniapp-order-backend/controllers.(*ProductController).DeleteProduct-fm (4 handlers)
+[GIN-debug] GET    /api/products/categories  --> uniapp-order-backend/controllers.(*ProductController).GetCategories-fm (4 handlers)
+[GIN-debug] GET    /api/customers            --> uniapp-order-backend/controllers.(*CustomerController).GetCustomers-fm (4 handlers)
+[GIN-debug] GET    /api/customers/:id        --> uniapp-order-backend/controllers.(*CustomerController).GetCustomer-fm (4 handlers)
+[GIN-debug] POST   /api/customers            --> uniapp-order-backend/controllers.(*CustomerController).CreateCustomer-fm (4 handlers)
+[GIN-debug] PUT    /api/customers/:id        --> uniapp-order-backend/controllers.(*CustomerController).UpdateCustomer-fm (4 handlers)
+[GIN-debug] DELETE /api/customers/:id        --> uniapp-order-backend/controllers.(*CustomerController).DeleteCustomer-fm (4 handlers)
+[GIN-debug] GET    /api/customers/:id/addresses --> uniapp-order-backend/controllers.(*CustomerController).GetCustomerAddresses-fm (4 handlers)
+[GIN-debug] POST   /api/customers/:id/addresses --> uniapp-order-backend/controllers.(*CustomerController).AddCustomerAddress-fm (4 handlers)
+[GIN-debug] GET    /api/orders               --> uniapp-order-backend/controllers.(*OrderController).GetOrders-fm (4 handlers)
+[GIN-debug] GET    /api/orders/:id           --> uniapp-order-backend/controllers.(*OrderController).GetOrder-fm (4 handlers)
+[GIN-debug] POST   /api/orders               --> uniapp-order-backend/controllers.(*OrderController).CreateOrder-fm (4 handlers)
+[GIN-debug] PUT    /api/orders/:id           --> uniapp-order-backend/controllers.(*OrderController).UpdateOrder-fm (4 handlers)
+[GIN-debug] DELETE /api/orders/:id           --> uniapp-order-backend/controllers.(*OrderController).DeleteOrder-fm (4 handlers)
+[GIN-debug] GET    /api/orders/calendar      --> uniapp-order-backend/controllers.(*OrderController).GetCalendarData-fm (4 handlers)
+[GIN-debug] GET    /api/dashboard            --> uniapp-order-backend/controllers.(*DashboardController).GetDashboardData-fm (4 handlers)
+[GIN-debug] GET    /health                   --> uniapp-order-backend/routes.SetupRoutes.func1 (4 handlers)
+2025/05/29 01:43:12 服务器启动在: 0.0.0.0:12000
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on 0.0.0.0:12000
+[GIN] 2025/05/29 - 01:43:19 | 404 |        1.15µs |       127.0.0.1 | GET      "/api/health"
+[GIN] 2025/05/29 - 01:43:22 | 200 |       363.6µs |       127.0.0.1 | GET      "/api/products"
+[GIN] 2025/05/29 - 01:43:29 | 200 |    4.350921ms |       127.0.0.1 | POST     "/api/products"
+[GIN] 2025/05/29 - 01:43:34 | 200 |     4.57427ms |       127.0.0.1 | POST     "/api/customers"
+[GIN] 2025/05/29 - 01:43:38 | 200 |      795.08µs |       127.0.0.1 | GET      "/api/dashboard"
+[GIN] 2025/05/29 - 01:44:23 | 204 |       31.58µs |       127.0.0.1 | OPTIONS  "/api/dashboard"
+[GIN] 2025/05/29 - 01:44:23 | 200 |      764.34µs |       127.0.0.1 | GET      "/api/dashboard"
+[GIN] 2025/05/29 - 01:44:47 | 204 |       15.83µs |       127.0.0.1 | OPTIONS  "/api/products"
+[GIN] 2025/05/29 - 01:44:47 | 200 |      373.53µs |       127.0.0.1 | GET      "/api/products"
+[GIN] 2025/05/29 - 01:44:53 | 200 |     4.43371ms |       127.0.0.1 | POST     "/api/products"
+[GIN] 2025/05/29 - 01:45:00 | 204 |        6.94µs |       127.0.0.1 | OPTIONS  "/api/customers"
+[GIN] 2025/05/29 - 01:45:00 | 200 |      387.94µs |       127.0.0.1 | GET      "/api/customers"
+[GIN] 2025/05/29 - 01:45:06 | 200 |    4.715731ms |       127.0.0.1 | POST     "/api/customers"
+[GIN] 2025/05/29 - 01:45:21 | 200 |      331.26µs |       127.0.0.1 | GET      "/api/customers"
+[GIN] 2025/05/29 - 01:45:21 | 200 |      227.19µs |       127.0.0.1 | GET      "/api/products"
+[GIN] 2025/05/29 - 01:45:21 | 204 |        3.55µs |       127.0.0.1 | OPTIONS  "/api/orders"
+[GIN] 2025/05/29 - 01:45:21 | 200 |    4.445689ms |       127.0.0.1 | POST     "/api/orders"
+[GIN] 2025/05/29 - 01:45:45 | 204 |        7.35µs |       127.0.0.1 | OPTIONS  "/api/orders/calendar?year=2025&month=5"
+[GIN] 2025/05/29 - 01:45:45 | 200 |      672.22µs |       127.0.0.1 | GET      "/api/orders/calendar?year=2025&month=5"

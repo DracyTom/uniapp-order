@@ -1,0 +1,15 @@
+server:
+  port: "12000"
+  host: "0.0.0.0"
+
+database:
+  driver: "sqlite3"  # 测试环境使用sqlite3，生产环境改为postgres
+  database: "./data.db"
+  # 生产环境PostgreSQL配置示例：
+  # driver: "postgres"
+  # host: "localhost"
+  # port: "5432"
+  # username: "your_username"
+  # password: "your_password"
+  # database: "order_management"
+  # sslmode: "disable"
